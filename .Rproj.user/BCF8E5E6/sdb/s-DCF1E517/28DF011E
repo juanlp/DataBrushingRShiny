@@ -1,0 +1,17 @@
+{
+    "contents" : "require(shiny)\niris <- datasets::iris\nnames(iris) <- gsub('[/.]','_',tolower(names(iris)))\nspecs <- as.character(unique(iris$species))\nnames(specs) <- specs\n\nshinyUI(fluidRow(\n    headerPanel(\"Data Brushing with Shiny/Javascript\"), \n    mainPanel(\n      tags$head(\n        includeScript('www/jquery.js'),\n        includeScript('www/jquery.flot.js'),\n        includeScript('www/floatdata.js'),\n        includeCSS('www/examples.css')\n      ),\n      HTML(paste('<script> window.irisfreq=',RJSONIO::toJSON(as.data.frame(table(iris$species)), byrow=T, colNames=T),';</script>')),\n      htmlOutput(\"json\"),\n      HTML('\n           <div id=\"header\">\n\t\t       <h2></h2>\n           </div>\n           <p>An example of interacting between two charts with data sent from Shiny to Javascript and vice-versa</p>\n           <p>The charts are created using Flot <a href=\"http://www.flotcharts.org/flot/examples/\">Flot library</a></p>\n           <p>The bar chart presents the number of observation per species in the iris data. Double-click on each bar to see the scatter plot for each subset</p>\n           <p>R is used to subsetting data and sending the data to javascript object as json object</p>\n           <div id=\"content\">\n           <div class=\"demo-container\">\n           <div id=\"flot-placeholder\" class=\"demo-placeholder\"></div>\n           </div>\n           <div class=\"demo-container\">\n           <div id=\"placeholder2\" class=\"demo-placeholder\"></div>\t\n           </div>\n           </div>\n           <div id=\"footer\"> \n           </div>\n           ')\n    )\n  )\n)",
+    "created" : 1435552275035.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2391167199",
+    "id" : "28DF011E",
+    "lastKnownWriteTime" : 1435571230,
+    "path" : "C:/Users/248028j/Dropbox/PhD_2013/JQuery/ShinyBrushing/v0.3/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

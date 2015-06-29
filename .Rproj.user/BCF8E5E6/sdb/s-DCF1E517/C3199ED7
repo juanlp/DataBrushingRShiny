@@ -1,0 +1,17 @@
+{
+    "contents" : "library(shiny)\niris <- datasets::iris\nnames(iris) <- gsub('[/.]','_',tolower(names(iris)))\n\nshinyServer(\n  function(input, output) {\n    output$json <- reactive({\n      if(is.null(iris$species)) {id = 1} else {id = as.numeric(input$selspecies)+1}\n      specs <- as.character(unique(iris$species))\n      selspecies <- specs[id]\n      paste('<script> window.datafromshiny=', \n            RJSONIO::toJSON(iris[iris$species == selspecies,], byrow=T, colNames=T),\n            ';console.log(data[0]);', # print 1 data line to console\n            '</script>')\n    })\n  }\n)    ",
+    "created" : 1435552276083.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4081684033",
+    "id" : "C3199ED7",
+    "lastKnownWriteTime" : 1435570711,
+    "path" : "C:/Users/248028j/Dropbox/PhD_2013/JQuery/ShinyBrushing/v0.3/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
